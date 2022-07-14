@@ -36,8 +36,8 @@ $routes->group('MasterData', ['namespace' => '\App\Modules\DataMaster\Controller
     $subroutes->get('aplikasi/daftarApp', 'App::listApp');
     $subroutes->get('aplikasi/detailApp/(:num)', 'App::getAppByModule/$1');
     $subroutes->post('aplikasi/create', 'App::create');
-    $subroutes->post('aplikasi/update/(:num)', 'App::update/$1');
-    $subroutes->post('aplikasi/delete/(:num)', 'App::delete/$1');
+    $subroutes->put('aplikasi/update/(:num)', 'App::update/$1');
+    $subroutes->delete('aplikasi/delete/(:num)', 'App::delete/$1');
 
     //role
     $subroutes->get('role', 'Role::index');

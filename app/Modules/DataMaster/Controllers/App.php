@@ -43,7 +43,7 @@ class App extends BaseController{
             $response = [
                 'status' => 400,
                 'error' => 'Not Found',
-                'message' => 'Data module app dengan id ' . $id . ' tidak ditemukan!'  
+                'message' => 'Data app dengan id ' . $id . ' tidak ditemukan!'  
             ];
             echo json_encode($response);
         }else{
@@ -52,7 +52,7 @@ class App extends BaseController{
                 $response = [
                     'status' => 200,
                     'error' => null,
-                    'message' => 'Data module app berhasil diupdate!'
+                    'message' => 'Data app berhasil diupdate!'
                 ];
             }catch(Exception $err){
                 $response = [
@@ -71,7 +71,7 @@ class App extends BaseController{
             $response = [
                 'status' => 400,
                 'error' => 'Not Found',
-                'message' => 'Data module app dengan id ' . $id . ' tidak ditemukan!'  
+                'message' => 'Data app dengan id ' . $id . ' tidak ditemukan!'  
             ];
             echo json_encode($response);
         }else{
@@ -80,7 +80,7 @@ class App extends BaseController{
                 $response = [
                     'status' => 200,
                     'error' => null,
-                    'message' => 'Data module app berhasil di hapus!'
+                    'message' => 'Data app berhasil di hapus!'
                 ];
             }catch(Exception $err){
                 $response = [

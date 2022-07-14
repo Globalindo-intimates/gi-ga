@@ -181,6 +181,7 @@
                             action: function(e, dt, node, config){
                                 $('#theRibbon1').text('Add New');
                                 clearAppControls();
+                                $('#module').empty();
                                 $('#module').append($('<option>', {
                                     value: rowData.id,
                                     text: rowData.module
@@ -223,15 +224,75 @@
             }
         });
 
-        $('#tableApp tbody').on('click', 'button.btnEditMenu', function(){
-            let selectedRow = tableApp.row($(this).parents('tr')).data();
+        $('#tableApp tbody').on('click', 'button.btnDeleteApp', function(){
+            // let selectedRow = tableApp.row($(this).parents('tr')).data();
+            let selectedRow = childTable.row($(this).parents('tr')).data();
+            console.log('selectedRow: ', selectedRow);
+            const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+                buttonsStyling: false
+            })
 
-            $('#menu').val(selectedRow.module);
+            swalWithBootstrapButtons.fire({
+                title: 'Yakin akan menghapus?',
+                text: "Data yang sudah dihapus tidak bisa dikembalikan lagi!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Ya, hapus saja!',
+                cancelButtonText: 'Tidak, batalkan!',
+                reverseButtons: true
+            }).then((result) => {
+            if (result.isConfirmed) {
+                let idApp = selectedRow.id;
+                $.ajax({
+                    type: 'DELETE',
+                    url: '<?= base_url("MasterData/aplikasi/delete"); ?>/' + idApp,
+                    dataType: 'json',
+                }).done(function(dtReturn){
+                    if(dtReturn.status == 200){
+                        swalWithBootstrapButtons.fire(
+                            'sudah dihapus!',
+                            'Data sudah dihapus.',
+                            'success'
+                        );
+                        loadTable();
+                    }
+                })
+            } else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ){
+                swalWithBootstrapButtons.fire(
+                    'Dibatalkan',
+                    'Data tidak jadi dihapus :)',
+                    'error'
+                )
+            }
+            })
+        });
+
+        $('#tableApp tbody').on('click', 'button.btnEditApp', function(){
+            // let selectedRow = tableApp.row($(this).parents('tr')).data();
+            let selectedRow = childTable.row($(this).parents('tr')).data();
+            console.log('selectedRow: ', selectedRow);
+            clearAppControls();
+
+            $('#id').val(selectedRow.id);
+            $('#module').empty();
+            $('#module').append($('<option>', {
+                value: rowData.id,
+                text: rowData.module
+            }));            
+            // $('#route').val(selectedRow.route);
+            $('#route').val(selectedRow.route);
+            $('#caption').val(selectedRow.caption);
             $('#alias').val(selectedRow.alias);
-            $('#icon').val(selectedRow.icon);
-            $('#theRibbon').text('Edit');
-            $('#modalMenu').modal('show');
-        })
+            $('#theRibbon1').text('Edit');
+            $('#modalApp').modal('show');
+        });
 
         function format(rD){
             var childTable = `<table class="table table-striped table-bordered no-wrap" id="cT${rD.id}" width="100%">
@@ -250,7 +311,7 @@
 
         function clearAppControls(){
             $('#id').val('');
-            $('#module').empty();
+            
             $('#route').val('');
             $('#caption').val('');
             $('#alias').val('');
@@ -289,6 +350,8 @@
                 const url = $('#theRibbon1').text() == 'Add New' ? '<?= base_url("MasterData/aplikasi/create"); ?>' : '<?= base_url("MasterData/aplikasi/update"); ?>/' + $('#id').val();
                 const method = $('#theRibbon1').text() == 'Add New' ? 'POST' : 'PUT';
 
+                console.log('url: ', url);
+                console.log('method: ', method);
                 $.ajax({
                     type: method,
                     url: url,
@@ -316,7 +379,7 @@
             }            
         });
 
-        function loadData(){
+        function loadTable(){
             tableApp.ajax.reload();
         }
 
