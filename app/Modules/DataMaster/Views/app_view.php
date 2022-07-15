@@ -186,7 +186,11 @@
                                     value: rowData.id,
                                     text: rowData.module
                                 }));
-                                $('#route').val($('#module').text() + "/");
+                                let module = $('#module').text().toString();
+                                let route = module.replace(' ', '');
+                                
+                                // $('#route').val($('#module').text() + "/");
+                                $('#route').val(route + "/");
                                 // $('#module').val(rowData.id);
                                 // $('#module').text(rowData.module);
 

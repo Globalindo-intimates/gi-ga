@@ -285,11 +285,11 @@
             }
         });
 
-        $('#module').blur(function(){
-            let moduleVal = $(this).val().toString();
-            let newVal = moduleVal.replace(" ","");
-            $('#module').val(newVal);
-        })
+        // $('#module').blur(function(){
+        //     let moduleVal = $(this).val().toString();
+        //     let newVal = moduleVal.replace(" ","");
+        //     $('#module').val(newVal);
+        // })
         
         function loadTable(){
             tableMenu.ajax.reload();

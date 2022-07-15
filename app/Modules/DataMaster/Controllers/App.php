@@ -65,7 +65,7 @@ class App extends BaseController{
         }
     }
 
-    public function delete($id = null){
+    public function delete($id){
         $data = $this->appModel->where('id', $id)->findAll();
         if(!$data){
             $response = [
@@ -85,7 +85,7 @@ class App extends BaseController{
             }catch(Exception $err){
                 $response = [
                     'status' => 400,
-                    'error' => null,
+                    'error' => $err->getCode(),
                     'message' => $err->getMessage()
                 ];                
             }
