@@ -42,10 +42,12 @@ class Autoload extends AutoloadConfig
 	public $psr4 = [
 		APP_NAMESPACE => APPPATH, // For custom app namespace
 		'Config'      => APPPATH . 'Config',
-        'Modules\Auth' => APPPATH . 'Modules/Auth',
-        'Modules\Dashboard' => APPPATH . 'Modules/Dashboard',
-        'Modules\DataMaster' => APPPATH . 'Modules/DataMaster',		
-        'Modules\User' => APPPATH . 'Modules/User',		
+		'Modules\Auth' => APPPATH . 'Modules/Auth',
+		'Modules\Dashboard' => APPPATH . 'Modules/Dashboard',
+		'Modules\DataMaster' => APPPATH . 'Modules/DataMaster',
+		'Modules\User' => APPPATH . 'Modules/User',
+		'Modules\News' => APPPATH . 'Modules/News',
+		'Modules\Maintenance' => APPPATH . 'Modules/Maintenance',
 	];
 
 	/**

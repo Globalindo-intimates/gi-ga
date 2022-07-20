@@ -61,15 +61,19 @@ class Filters extends BaseConfig
 	 * @var array
 	 */
 	public $filters = [
-        'filterAuth' => [
-            'before' => [
-                'dashboard/*',
-                'dashboard',
-                'MasterData/*',
-                'MasterData',
+		'filterAuth' => [
+			'before' => [
+				'dashboard/*',
+				'dashboard',
+				'MasterData/*',
+				'MasterData',
 				'User/*',
-				'User'
-            ]
-        ]		
+				'User',
+				'Maintenance/*',
+				'Maintenance',
+				'News/*',
+				'News'
+			]
+		]
 	];
 }
