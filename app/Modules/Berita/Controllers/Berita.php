@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Modules\News\Controllers;
+namespace App\Modules\Berita\Controllers;
 
 use App\Controllers\BaseController;
 use Exception;
-use App\Modules\News\Models\BeritaAcaraModel;
+use App\Modules\Berita\Models\BeritaAcaraModel;
 
-class News extends BaseController
+class Berita extends BaseController
 {
     protected $beritaAcaraModel;
 
@@ -17,7 +17,7 @@ class News extends BaseController
 
     function index()
     {
-        return view('App\Modules\News\Views\berita_acara_view');
+        return view('App\Modules\Berita\Views\berita_acara_view');
     }
 
     function listBerita()

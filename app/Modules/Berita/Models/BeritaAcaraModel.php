@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\News\Models;
+namespace App\Modules\Berita\Models;
 
 use CodeIgniter\Model;
 

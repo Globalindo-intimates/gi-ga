@@ -27,11 +27,11 @@
                             <th>ID</th>
                             <th>Tanggal</th>
                             <th>Nik</th>
-                            <th>Nama Karyawan</th>
+                            <th>Nama</th>
                             <th>Alamat</th>
-                            <th>Department</th>
+                            <th>Departemen</th>
                             <th>Berita</th>
-                            <th>Penanggung Jawab</th>
+                            <th>Security</th>
                             <th>Keterangan</th>
                             <th>Saksi</th>
                             <th></th>
@@ -42,11 +42,11 @@
                             <th>ID</th>
                             <th>Tanggal</th>
                             <th>Nik</th>
-                            <th>Nama Karyawan</th>
+                            <th>Nama</th>
                             <th>Alamat</th>
-                            <th>Department</th>
+                            <th>Departemen</th>
                             <th>Berita</th>
-                            <th>Penanggung Jawab</th>
+                            <th>Security</th>
                             <th>Keterangan</th>
                             <th>Saksi</th>
                             <th></th>
@@ -62,7 +62,7 @@
 <div class="modal fade" id="modalBerita" role="dialog">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modal-header bg-success">
+            <div class="modal-header bg-info">
                 <h4 class="modal-title">BERITA ACARA</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times</span>
@@ -227,7 +227,7 @@
         "autoWidth": false,
         "Scroll": true,
         "ajax": {
-            url: '<?= base_url("News/daftarBerita"); ?>',
+            url: '<?= base_url("Berita/daftarBerita"); ?>',
             type: 'GET',
             dataType: 'json',
         },
@@ -267,13 +267,14 @@
         ],
         "columnDefs": [{
                 "targets": [0],
-                "visible": false
+                "visible": true
             },
             {
                 "targets": [10],
                 "render": function(data, type, row, meta) {
                     return '<button class="btn btn-success btn-sm mx-1 btnEditBerita"><i class="fas fa-edit"></i>Edit</button>' +
-                        '<button class="btn btn-danger btn-sm mx-1 btnDeleteBerita"><i class="fas fa-trash"></i>Delete</button>';
+                        '<button class="btn btn-danger btn-sm mx-1 btnDeleteBerita"><i class="fas fa-trash"></i>Delete</button>' +
+                        '<button class="btn btn-primary btn-sm mx-1 btnPrintBerita"><i class="fas fa-print"></i>Print</button>';
                 }
             }
         ],
@@ -323,7 +324,7 @@
             if (result.isConfirmed) {
                 $.ajax({
                     type: 'DELETE',
-                    url: '<?= base_url("News/Berita/delete"); ?>/' + selectedRow.id_berita,
+                    url: '<?= base_url("Berita/Berita/delete"); ?>/' + selectedRow.id_berita,
                     dataType: 'json'
                 }).done(function(dtReturn) {
                     if (dtReturn.status == 200) {
@@ -348,6 +349,10 @@
         })
     });
 
+    $('#tableBerita tbody').on('click', 'button.btnPrintBerita', function() {
+
+    });
+
     $('form[id="formBerita"]').validate({
         rules: {
             berita: {
@@ -366,8 +371,8 @@
 
             let data = $(form).serialize();
 
-            const url = $('#theRibbon').text() == 'Add New' ? '<?= base_url("News/Berita/create"); ?>' :
-                '<?= base_url("News/Berita/update"); ?>/' + $('#id_berita').val();
+            const url = $('#theRibbon').text() == 'Add New' ? '<?= base_url("Berita/Berita/create"); ?>' :
+                '<?= base_url("Berita/Berita/update"); ?>/' + $('#id_berita').val();
             const method = $('#theRibbon').text() == 'Add New' ? 'POST' : 'PUT';
 
             $.ajax({

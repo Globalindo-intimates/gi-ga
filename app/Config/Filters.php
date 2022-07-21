@@ -71,8 +71,8 @@ class Filters extends BaseConfig
 				'User',
 				'Maintenance/*',
 				'Maintenance',
-				'News/*',
-				'News'
+				'Berita/*',
+				'Berita'
 			]
 		]
 	];
